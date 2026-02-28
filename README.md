@@ -33,10 +33,9 @@
 ### 1.克隆项目到本地：
 
 ```
+git clone https://github.com/WaveMonster/Gym_Helper.git
 
-git clone https://github.com/你的用户名/你的仓库名.git
-
-cd 你的仓库名
+cd Gym_Helper
 ```
 
 ### 2.初始化数据库：

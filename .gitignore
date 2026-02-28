@@ -1,1 +1,2 @@
-gym_roster.json
+gym_roster.json__pycache__/
+*.pyc

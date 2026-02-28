@@ -202,7 +202,7 @@ def main():
     if exercise_data.get("current_weight") is None:
         while True:
             print("\n⚠️ 发现记录为空：检测到您是首次记录该动作。")
-            weight_str = input("为了定制您的专属计划，请输入您目前该动作的起始训练重量（单边、不含杠铃杆的重量，单位：kg）：\n> ")
+            weight_str = input("为了定制您的专属计划，请输入您目前该动作的起始训练重量（单位：kg）：\n> ")
             try:
                 initial_weight = float(weight_str.strip())
                 if initial_weight < 0:
@@ -213,13 +213,11 @@ def main():
                 exercise_data["current_weight"] = initial_weight
                 
                 # 步长补录逻辑
-                if exercise_data.get("weight_increment") is None:
-                    inc_str = input("\n请输入该动作每次进阶的最小加重量（步长）。例如：杠铃可填 2.5，固定器械请根据插销差值填写（默认直接回车为 2.5）：\n> ").strip()
-                    try:
-                        exercise_data["weight_increment"] = float(inc_str) if inc_str else 2.5
-                    except ValueError:
-                        print("输入格式有误，默认使用 2.5kg 作为步长。")
-                        exercise_data["weight_increment"] = 2.5
+                inc_input = input("请输入该动作每次进阶的最小加重量（步长）。例如：杠铃可填 2.5，固定器械请根据插销差值填写（默认直接回车为 2.5）：\n> ").strip()
+                try:
+                    exercise_data["weight_increment"] = float(inc_input) if inc_input else 2.5
+                except ValueError:
+                    exercise_data["weight_increment"] = 2.5
                 
                 # 基准容量修改逻辑
                 base_sets = exercise_data["base_sets"]
@@ -249,10 +247,6 @@ def main():
                 break
             except ValueError:
                 print("输入格式有误，请输入纯数字（例如：60 或 62.5）。")
-    
-    print("\n============== 今日计划 ==============")
-    print(get_target_plan(exercise_data))
-    print("=======================================")
     
     while True:
         print("\n请如实输入您今天完成的每一组次数。")
